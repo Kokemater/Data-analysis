@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página con Django</title>
+    <link rel="stylesheet" href="{% static 'my_app/style.css' %}">
+</head>
+<body>
+    <h1>¡Hola, Mundo!</h1>
+    <p>Esta es una página simple con HTML, CSS y JavaScript en Django.</p>
+    
+    <!-- Botón para ejecutar el código -->
+    <button id="boton" onclick="ejecutarCodigo()">Ejecutar código Python</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        // Función que hace la petición a la ruta ejecutar_codigo
+        function ejecutarCodigo() {
+            fetch('/ejecutar/')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resultado').innerHTML = data;
+            });
+        }
+    </script>
+    <script src="{% static 'my_app/script.js' %}"></script>
+    <h1>Comprobación de Número</h1>
+    <form action="{% url 'comprobar_numero' %}" method="post">
+        {% csrf_token %}
+        <label for="numero">Introduce un número:</label>
+        <input type="number" id="numero" name="numero" required>
+        <button type="submit">Comprobar</button>
+    </form>
+
+    {% if resultado %}
+        <p>{{ resultado }}</p>
+    {% endif %}
+
+    <script src="{% static 'my_app/script.js' %}"></script>
+</body>
+<h2>Mostrar Hora</h2>
+<form action="{% url 'obtener_hora' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Mostrar Hora Actual</button>
+</form>
+
+{% if hora %}
+    <p>Hora actual: {{ hora }}</p>
+{% endif %}
+</html>

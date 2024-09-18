@@ -1,0 +1,17 @@
+{
+    "name": "text-recognition-app",
+    "version": "1.0.0",
+    "description": "A simple app for text recognition and translation",
+    "main": "server.js",
+    "dependencies": {
+      "express": "^4.17.1",
+      "body-parser": "^1.19.0",
+      "node-fetch": "^2.6.1"
+    },
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Your Name",
+    "license": "MIT"
+  }
+  
